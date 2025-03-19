@@ -11,24 +11,15 @@ class CategoryController extends Controller
     {
         return response()->json([
             'status' => 200,
-            'message' => 'Berhasil mendapatkan data kategori',
+            'message' => 'Berhasil mendapatkan data katego',
             'data' => Category::all()
         ]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255'
-        ]);
-
         $category = Category::create($request->all());
-
-        return response()->json([
-            'status' => 201,
-            'message' => 'Kategori berhasil ditambahkan',
-            'data' => $category
-        ]);
+        return response()->json($category, 201);
     }
 
     public function show($id)
@@ -36,17 +27,10 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if (!$category) {
-            return response()->json([
-                'status' => 404,
-                'message' => 'Kategori tidak ditemukan'
-            ]);
+            return response()->json(["message" => "Category not found"], 404);
         }
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'Berhasil mendapatkan data kategori',
-            'data' => $category
-        ]);
+        return response()->json($category, 200);
     }
 
     public function update(Request $request, $id)
@@ -54,23 +38,11 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if (!$category) {
-            return response()->json([
-                'status' => 404,
-                'message' => 'Kategori tidak ditemukan'
-            ]);
+            return response()->json(["message" => "Category not found"], 404);
         }
 
-        $request->validate([
-            'name' => 'required|string|max:255'
-        ]);
-
         $category->update($request->all());
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'Kategori berhasil diperbarui',
-            'data' => $category
-        ]);
+        return response()->json($category, 200);
     }
 
     public function destroy($id)
@@ -78,17 +50,10 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if (!$category) {
-            return response()->json([
-                'status' => 404,
-                'message' => 'Kategori tidak ditemukan'
-            ]);
+            return response()->json(["message" => "Category not found"], 404);
         }
 
         $category->delete();
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'Kategori berhasil dihapus'
-        ]);
+        return response()->json(["message" => "Category deleted successfully"], 200);
     }
 }

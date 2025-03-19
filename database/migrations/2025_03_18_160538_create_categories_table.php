@@ -6,14 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCategoriesTable extends Migration
 {
-    public function up(): void
-    {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
-        });
-    }
+    public function up()
+{
+    Schema::create('categories', function (Blueprint $table) {
+        $table->id('id_category'); // Kolom primary key yang sesuai
+        $table->string('category_name');
+        $table->timestamps();
+    });
+}
+
+
     public function down(): void
     {
         Schema::dropIfExists('categories');

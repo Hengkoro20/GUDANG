@@ -11,7 +11,7 @@ class Item extends Model
 
     protected $table = 'items';
     protected $primaryKey = 'id_item';
-    protected $fillable = ['Item_name', 'id_category', 'stock'];
+    protected $fillable = ['item_name', 'id_category', 'stock'];
 
     public function category()
     {

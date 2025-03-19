@@ -4,9 +4,11 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ItemController;
 
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('admins', AdminController::class);
+Route::resource('items', ItemController::class);
 
 
 /*
